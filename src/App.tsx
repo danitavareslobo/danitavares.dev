@@ -1,32 +1,32 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Layout from './components/Layout';
-import { DEVELOPER_INFO } from './utils/constants';
+import Navbar from './components/Navigation/Navbar';
+import { Home, About, Skills, Work, Resume, Contact } from './pages';
 
 function App() {
   return (
     <ThemeProvider>
       <Router>
         <Layout>
-          <div className="container">
-            <section style={{ padding: '100px 20px', textAlign: 'center' }}>
-              <h1 style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--color-primary)' }}>
-                {DEVELOPER_INFO.name}
-              </h1>
-              <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>
-                Desenvolvedor Full Stack
-              </p>
-              <p style={{ fontSize: '1rem', marginTop: '1rem', color: 'var(--text-tertiary)' }}>
-                Especializado em {DEVELOPER_INFO.technologies.join(', ')}
-              </p>
-              <div style={{ marginTop: '2rem' }}>
-                <p style={{ color: 'var(--text-secondary)' }}>
-                  🌙 Teste o botão de tema no canto superior direito
-                </p>
-              </div>
-            </section>
-          </div>
+          {/* Navbar Superior Estilo Onyedika */}
+          <Navbar />
+          
+          {/* Main Content */}
+          <main className="main-content">
+            <AnimatePresence mode="wait">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/skills" element={<Skills />} />
+                <Route path="/work" element={<Work />} />
+                <Route path="/resume" element={<Resume />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </AnimatePresence>
+          </main>
         </Layout>
       </Router>
     </ThemeProvider>

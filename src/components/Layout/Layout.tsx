@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../../hooks/useTheme';
-import ThemeToggle from './ThemeToggle';
 import './Layout.scss';
 
 interface LayoutProps {
@@ -19,7 +18,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         transition={{ duration: 0.3 }}
         className="layout__container"
       >
-        <ThemeToggle />
         <main className="layout__main">
           {children}
         </main>

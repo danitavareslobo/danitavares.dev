@@ -1,0 +1,267 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+// Navbar Superior Estilo Onyedika
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  @include transition(all $transition-normal);
+
+  &.dark {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mobile {
+      padding: 0 1rem;
+    }
+  }
+
+  &__logo {
+    &-link {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      @include transition(transform $transition-fast);
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+    margin: 0;
+
+    @include mobile {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__role {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__theme-toggle,
+  &__menu-toggle {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 12px;
+    @include transition(all $transition-fast);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: var(--bg-secondary);
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      @include shadow('sm');
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    @include mobile {
+      padding: 0.6rem;
+    }
+  }
+
+  &__theme-icon {
+    font-size: 1.2rem;
+
+    @include mobile {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__menu-toggle {
+    &--active {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+  }
+}
+
+// Menu Lateral Estilo Onyedika com Blocos Coloridos
+.onyedika-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2000;
+
+  @include tablet {
+    width: 320px;
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+
+  &__block {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    @include transition(all $transition-fast);
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    // Bloco GitHub - Cinza escuro
+    &--github {
+      background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
+    }
+
+    // Bloco LinkedIn - Azul
+    &--linkedin {
+      background: linear-gradient(135deg, #0077b5 0%, #0099d4 100%);
+    }
+
+    // Bloco WhatsApp - Verde
+    &--whatsapp {
+      background: linear-gradient(135deg, #25d366 0%, #20c659 100%);
+    }
+
+    // Bloco E-mail - Roxo
+    &--email {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    }
+
+    // Bloco Menu Principal - Rosa (cor primária)
+    &--nav {
+      flex: 3;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+      align-items: flex-start;
+      padding: 3rem 2rem;
+
+      .onyedika-menu__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 100%;
+      }
+    }
+
+    // Efeito de brilho
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: translateX(-100%);
+      @include transition(transform 0.6s);
+    }
+
+    &:hover::before {
+      transform: translateX(100%);
+    }
+  }
+
+  &__social-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    @include transition(all $transition-fast);
+
+    &:hover {
+      transform: translateX(10px);
+    }
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  &__nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    @include transition(all $transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateX(15px);
+      @include shadow('md');
+    }
+
+    &:active {
+      transform: translateX(15px) scale(0.95);
+    }
+
+    @include mobile {
+      font-size: 1.1rem;
+      padding: 0.6rem 0.8rem;
+    }
+  }
+}
+
+// Overlay escuro
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 1999;
+}

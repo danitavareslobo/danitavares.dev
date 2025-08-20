@@ -1,0 +1,215 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.side-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 300px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  z-index: 100;
+  overflow-y: auto;
+  @include shadow('md');
+
+  @include tablet {
+    display: none;
+  }
+
+  @include mobile {
+    display: none;
+  }
+
+  &__container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  &__header {
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+  }
+
+  &__logo {
+    display: block;
+    text-decoration: none;
+    color: var(--text-primary);
+    @include transition(color $transition-fast);
+
+    &:hover {
+      color: var(--color-primary);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0 0 0.3rem;
+      color: var(--color-primary);
+    }
+
+    span {
+      font-size: 0.9rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+  }
+
+  &__theme-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &__nav {
+    flex: 1;
+    margin-bottom: 2rem;
+
+    &-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &-item {
+      margin-bottom: 0.5rem;
+      @include transition(transform $transition-fast);
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      @include transition(all $transition-normal);
+      position: relative;
+      font-weight: 500;
+
+      &:hover {
+        background: var(--bg-tertiary);
+        color: var(--color-primary);
+        transform: translateX(5px);
+      }
+
+      &--active {
+        background: rgba(var(--color-primary-rgb), 0.1);
+        color: var(--color-primary);
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 4px;
+          height: 60%;
+          background: var(--color-primary);
+          border-radius: 0 4px 4px 0;
+        }
+
+        .side-menu__nav-icon {
+          color: var(--color-primary);
+        }
+      }
+    }
+
+    &-icon {
+      font-size: 1.2rem;
+      color: var(--text-tertiary);
+      @include transition(color $transition-fast);
+    }
+
+    &-text {
+      font-size: 1rem;
+    }
+  }
+
+  &__social {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    text-align: center;
+
+    &-label {
+      margin-bottom: 1rem;
+
+      span {
+        font-size: 0.85rem;
+        color: var(--text-tertiary);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+
+    &-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--bg-tertiary);
+      border-radius: 10px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      @include transition(all $transition-fast);
+      font-size: 1.1rem;
+
+      &:hover {
+        background: var(--color-primary);
+        color: white;
+        @include shadow('sm');
+      }
+
+      &:nth-child(1) {
+        &:hover {
+          background: #333;
+        }
+      }
+
+      &:nth-child(2) {
+        &:hover {
+          background: #0077b5;
+        }
+      }
+
+      &:nth-child(3) {
+        &:hover {
+          background: #25d366;
+        }
+      }
+    }
+  }
+}
+
+// Scrollbar personalizada para o menu lateral
+.side-menu {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 2px;
+    opacity: 0.5;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    opacity: 1;
+  }
+}
