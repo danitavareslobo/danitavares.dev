@@ -19,11 +19,11 @@ function App() {
             <AnimatePresence mode="wait">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/skills" element={<Skills />} />
-                <Route path="/work" element={<Work />} />
-                <Route path="/resume" element={<Resume />} />
-                <Route path="/contact" element={<Contact />} />
+                <Route path="/sobre" element={<About />} />
+                <Route path="/habilidades" element={<Skills />} />
+                <Route path="/experiencias" element={<Work />} />
+                <Route path="/curriculo" element={<Resume />} />
+                <Route path="/contato" element={<Contact />} />
               </Routes>
             </AnimatePresence>
           </main>

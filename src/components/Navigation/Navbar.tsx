@@ -197,11 +197,11 @@ const Navbar: React.FC = () => {
                     transition={{ delay: 0.3, duration: 0.3 }}
                   >
                     <Link 
-                      to="/work" 
+                      to="/sobre" 
                       onClick={closeMenu}
-                      className={isActiveRoute('/work') ? 'active' : ''}
+                      className={isActiveRoute('/sobre') ? 'active' : ''}
                     >
-                      TRABALHOS
+                      SOBRE
                     </Link>
                   </motion.li>
                   
@@ -212,11 +212,11 @@ const Navbar: React.FC = () => {
                     transition={{ delay: 0.4, duration: 0.3 }}
                   >
                     <Link 
-                      to="/skills" 
+                      to="/trabalhos" 
                       onClick={closeMenu}
-                      className={isActiveRoute('/skills') ? 'active' : ''}
+                      className={isActiveRoute('/trabalhos') ? 'active' : ''}
                     >
-                      HABILIDADES
+                      TRABALHOS
                     </Link>
                   </motion.li>
                   
@@ -227,11 +227,11 @@ const Navbar: React.FC = () => {
                     transition={{ delay: 0.5, duration: 0.3 }}
                   >
                     <Link 
-                      to="/resume" 
+                      to="/habilidades" 
                       onClick={closeMenu}
-                      className={isActiveRoute('/resume') ? 'active' : ''}
+                      className={isActiveRoute('/habilidades') ? 'active' : ''}
                     >
-                      CURRÍCULO
+                      HABILIDADES
                     </Link>
                   </motion.li>
                   
@@ -242,9 +242,24 @@ const Navbar: React.FC = () => {
                     transition={{ delay: 0.6, duration: 0.3 }}
                   >
                     <Link 
-                      to="/contact" 
+                      to="/curriculo" 
                       onClick={closeMenu}
-                      className={isActiveRoute('/contact') ? 'active' : ''}
+                      className={isActiveRoute('/curriculo') ? 'active' : ''}
+                    >
+                      CURRÍCULO
+                    </Link>
+                  </motion.li>
+                  
+                  <motion.li
+                    className="navigation-menu__item"
+                    initial={{ x: 100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.7, duration: 0.3 }}
+                  >
+                    <Link 
+                      to="/contato" 
+                      onClick={closeMenu}
+                      className={isActiveRoute('/contato') ? 'active' : ''}
                     >
                       CONTATO
                     </Link>
