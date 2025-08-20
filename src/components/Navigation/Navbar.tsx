@@ -220,26 +220,12 @@ const Navbar: React.FC = () => {
                     </Link>
                   </motion.li>
                   
-                  <motion.li
-                    className="navigation-menu__item"
-                    initial={{ x: 100, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.3 }}
-                  >
-                    <Link 
-                      to="/habilidades" 
-                      onClick={closeMenu}
-                      className={isActiveRoute('/habilidades') ? 'active' : ''}
-                    >
-                      HABILIDADES
-                    </Link>
-                  </motion.li>
                   
                   <motion.li
                     className="navigation-menu__item"
                     initial={{ x: 100, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.6, duration: 0.3 }}
+                    transition={{ delay: 0.5, duration: 0.3 }}
                   >
                     <Link 
                       to="/curriculo" 
@@ -254,7 +240,7 @@ const Navbar: React.FC = () => {
                     className="navigation-menu__item"
                     initial={{ x: 100, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.7, duration: 0.3 }}
+                    transition={{ delay: 0.6, duration: 0.3 }}
                   >
                     <Link 
                       to="/contato" 

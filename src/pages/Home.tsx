@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageWrapper from '../components/Layout/PageWrapper';
 import Hero from '../components/Hero';
+import Skills from '../components/Skills';
 import SocialLinksFooter from '../components/Hero/SocialLinksFooter';
 
 const Home: React.FC = () => {
@@ -15,6 +16,7 @@ const Home: React.FC = () => {
         transition={{ duration: 0.5 }}
       >
         <Hero />
+        <Skills />
         <SocialLinksFooter />
       </motion.div>
     </PageWrapper>
