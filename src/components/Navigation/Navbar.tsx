@@ -46,8 +46,8 @@ const Navbar: React.FC = () => {
         <div className="navbar__container">
           <div className="navbar__logo">
             <Link to="/" className="navbar__logo-link">
-              <span className="navbar__name">Dani</span>
-              <span className="navbar__role">Desenvolvedora</span>
+              <span className="navbar__name">Dani Tavares Lobo</span>
+              <span className="navbar__role">Full-Stack Development</span>
             </Link>
           </div>
 

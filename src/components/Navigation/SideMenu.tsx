@@ -35,7 +35,7 @@ const SideMenu: React.FC = () => {
         >
           <NavLink to="/" className="side-menu__logo">
             <h2>{DEVELOPER_INFO.name.split(' ')[0]}</h2>
-            <span>Desenvolvedora</span>
+            <span>Full-Stack Development</span>
           </NavLink>
           <div className="side-menu__theme-toggle">
             <ThemeToggle />
