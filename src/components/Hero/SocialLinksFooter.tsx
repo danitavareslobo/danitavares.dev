@@ -95,7 +95,7 @@ const SocialLinksFooter: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2.4, duration: 0.6 }}
         >
-          Feito com 💝 © Copyright 2025. Dani Tavares. Todos os direitos reservados.
+          © Copyright {new Date().getFullYear()}. Dani Tavares Lobo. Todos os direitos reservados.
         </motion.p>
       </div>
     </motion.footer>

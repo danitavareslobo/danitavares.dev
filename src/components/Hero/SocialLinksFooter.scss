@@ -8,10 +8,22 @@
   border-top: 1px solid var(--border-color);
   
   &__container {
-    max-width: 1400px; 
-    margin: 0 auto;
-    padding: 0 2rem;
+    width: 80%; 
+    margin: 0 auto; 
+    padding: 0;
     text-align: center;
+    
+    @include tablet {
+      width: 90%;
+    }
+    
+    @include mobile {
+      width: 95%;
+    }
+    
+    @media (max-width: 400px) {
+      width: 98%;
+    }
   }
   
   &__title {
@@ -30,44 +42,44 @@
   &__links {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
-    gap: 2rem;
+    gap: 1.5rem;
     margin-bottom: 3rem;
-    max-width: 1200px; 
-    margin-left: auto;
-    margin-right: auto;
-    
-    @media (min-width: 1280px) {
-      max-width: 1300px;
-      gap: 2.5rem;
-    }
-    
-    @media (min-width: 1024px) and (max-width: 1279px) {
-      max-width: 1000px;
-      gap: 1.8rem;
-    }
+    width: 100%;
+    padding: 0; 
     
     @include tablet {
       grid-template-columns: repeat(2, 1fr);
-      max-width: 600px;
+      gap: 1.5rem;
     }
     
     @include mobile {
       grid-template-columns: repeat(2, 1fr); 
       gap: 1rem;
-      max-width: 400px;
+    }
+    
+    @media (max-width: 400px) {
+      gap: 0.5rem;
     }
   }
   
   &__link {
-    padding: 2rem 1.5rem;
-    border-radius: 16px;
+    padding: 3rem 2.5rem; 
+    border-radius: 20px; 
     text-decoration: none;
     @include transition(all $transition-normal);
     position: relative;
     overflow: hidden;
-    min-height: 140px;
+    min-height: 180px; 
     color: white; 
-    border: none; 
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    @include mobile {
+      padding: 2rem 1.5rem;
+      min-height: 140px;
+    } 
     
     &[href*="github"] {
       background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
@@ -114,23 +126,37 @@
   &__link-content {
     position: relative;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    width: 100%;
+    gap: 1.5rem; 
   }
   
   &__icon {
     font-size: 2.5rem;
     color: white; 
-    margin-bottom: 1rem;
+    margin-bottom: 0; 
     @include transition(all $transition-normal);
     display: block;
+    order: 2; 
+    flex-shrink: 0; 
   }
   
   &__name {
     display: block;
-    font-weight: 600;
+    font-weight: 700; 
     color: white;
-    font-size: 1rem;
+    font-size: 1.3rem; 
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    order: 1; 
+    text-align: left; 
+    
+    @include mobile {
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
   }
   
   &__cta {
