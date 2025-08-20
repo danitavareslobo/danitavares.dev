@@ -205,11 +205,11 @@
   width: 100%;
   display: flex;
   z-index: 2000;
-  padding-top: 120px; 
+  padding-top: 120px;
   @include transition(padding-top $transition-normal);
 
   &.navbar-collapsed {
-    padding-top: 80px; 
+    padding-top: 80px;
   }
 
   @include mobile {
@@ -221,7 +221,8 @@
     display: flex;
     flex-direction: row; 
     height: 100%;
-
+    align-items: stretch;
+    
     @include mobile {
       width: 100%;
       height: 40%;
@@ -235,7 +236,7 @@
         
         svg {
           order: 1 !important; 
-          align-self: center !important; 
+          align-self: center !important;
         }
       }
     }
@@ -244,16 +245,15 @@
       flex: 1;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: center; 
       padding: 2rem;
       text-decoration: none;
       color: white;
       @include transition(all $transition-normal);
       position: relative;
       overflow: hidden;
-      writing-mode: vertical-lr; 
       height: 100%;
-
+      
       &:hover {
         transform: scale(1.02);
       }
@@ -274,7 +274,6 @@
         background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
       }
 
-      // Efeito de brilho
       &::before {
         content: '';
         position: absolute;
@@ -293,67 +292,69 @@
 
       &__content {
         display: flex;
-        flex-direction: row; // Linha para ícone ficar ao lado do texto
-        align-items: center; // Centralizar verticalmente
-        gap: 2rem; // Espaço entre ícone e texto
-        text-align: center;
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: flex-start; 
         height: 100%;
-        justify-content: center;
         
-        // Ícone das redes sociais vem ANTES do texto (à esquerda = acima visualmente)
         svg {
-          order: 1; // Ícone primeiro (à esquerda)
-          flex-shrink: 0; // Não encolher o ícone
-          align-self: flex-start; // Ícones alinhados no topo
+          font-size: 3rem; 
+          flex-shrink: 0;
+          margin-bottom: 2rem; 
+          margin-top: 3rem;
+          
+          @include mobile {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+          }
         }
       }
 
       &__label {
-        font-size: 3rem; // Mesmo tamanho do texto do menu
+        font-size: 3rem; 
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 2px;
-        writing-mode: vertical-lr; // Texto na vertical
+        writing-mode: vertical-lr; 
         text-orientation: mixed;
-        transform: rotate(180deg); // Texto deitado
+        transform: rotate(180deg); 
         white-space: nowrap;
-        order: 2; // Texto depois do ícone
-        margin: 0; // Remover margens extras
-        align-self: flex-end; // Texto ajustado abaixo dos ícones
+        margin: 0;
+        margin: 0; 
+        align-self: center; 
 
         @include mobile {
-          font-size: 2rem; // Mesmo tamanho do menu mobile
-          writing-mode: horizontal-tb; // Normal no mobile
+          font-size: 2rem; 
+          writing-mode: horizontal-tb; 
           transform: none;
           letter-spacing: 1px;
-          order: 2; // Manter ordem consistente
+margin: 0;
         }
       }
     }
   }
 
-  // Lado direito - Menu de navegação (50% da tela)
   &__navigation-section {
     width: 50%;
-    background: var(--bg-primary); // Background do tema
+    background: var(--bg-primary); 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end; // Alinhado à direita
+    align-items: flex-end; 
     padding: 4rem;
     position: relative;
-    border-left: 3px solid var(--color-primary); // Borda rosa sutil
+    border-left: 3px solid var(--color-primary); 
 
     @include mobile {
       width: 100%;
       height: 60%;
       padding: 2rem;
-      align-items: center; // Centralizado no mobile
+      align-items: center; 
     }
   }
 }
 
-// Menu de navegação principal
 .navigation-menu {
   list-style: none;
   padding: 0;
@@ -362,7 +363,7 @@
 
   &__item {
     margin-bottom: 1.5rem;
-    text-align: right; // Alinhado à direita
+    text-align: right; 
     position: relative;
 
     @include mobile {
@@ -371,7 +372,7 @@
     }
 
     a {
-      color: var(--color-primary); // Texto rosa pink
+      color: var(--color-primary); 
       text-decoration: none;
       font-size: 3rem;
       font-weight: 700;
@@ -383,7 +384,7 @@
       position: relative;
 
       &:hover {
-        transform: translateX(-20px); // Move para esquerda (direção do dedo)
+        transform: translateX(-20px); 
         opacity: 0.8;
       }
 
@@ -391,19 +392,18 @@
         transform: translateX(-20px) scale(0.95);
       }
 
-      // Página ativa - dedo indicador ANTES do texto
       &.active {
         &::before {
           content: '👉';
           position: absolute;
-          left: -5rem; // Mais afastado do texto
+          left: -5rem; 
           top: 50%;
           transform: translateY(-50%);
           font-size: 2rem;
           animation: pointFinger 1.5s ease-in-out infinite;
         }
         
-        color: var(--color-primary-dark); // Rosa mais escuro para ativo
+        color: var(--color-primary-dark); 
         font-weight: 800;
       }
 
@@ -416,7 +416,7 @@
         }
         
         &.active::before {
-          left: -3.5rem; // Mais afastado no mobile também
+          left: -3.5rem; 
           font-size: 1.5rem;
         }
       }
@@ -424,17 +424,15 @@
   }
 }
 
-// Animação do dedo indicador (movendo para direita, em direção ao texto)
 @keyframes pointFinger {
   0%, 100% {
     transform: translateY(-50%) translateX(0);
   }
   50% {
-    transform: translateY(-50%) translateX(15px); // Move para direita
+    transform: translateY(-50%) translateX(15px); 
   }
 }
 
-// Overlay escuro
 .menu-overlay {
   position: fixed;
   top: 0;
