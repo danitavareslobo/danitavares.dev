@@ -1,0 +1,344 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--bg-primary);
+  overflow: hidden;
+  padding: 0 2rem;
+
+  @include mobile {
+    padding: 0 1rem;
+    min-height: 90vh;
+  }
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__shape {
+    position: absolute;
+    opacity: 0.1;
+    
+    &--circle {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--color-primary), var(--color-primary-light));
+      top: 10%;
+      right: 10%;
+      
+      @include mobile {
+        width: 150px;
+        height: 150px;
+        top: 5%;
+        right: 5%;
+      }
+    }
+    
+    &--triangle {
+      width: 0;
+      height: 0;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 173px solid var(--color-primary);
+      top: 60%;
+      left: 5%;
+      
+      @include mobile {
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 87px solid var(--color-primary);
+        top: 70%;
+        left: 3%;
+      }
+    }
+    
+    &--square {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+      bottom: 20%;
+      right: 20%;
+      
+      @include mobile {
+        width: 80px;
+        height: 80px;
+        bottom: 15%;
+        right: 15%;
+      }
+    }
+  }
+
+  &__container {
+    max-width: 1200px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__greeting {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    
+    @include mobile {
+      font-size: 1.2rem;
+    }
+  }
+
+  &__name {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    
+    @include laptop {
+      font-size: 3.5rem;
+    }
+    
+    @include tablet {
+      font-size: 3rem;
+    }
+    
+    @include mobile {
+      font-size: 2.5rem;
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    @include tablet {
+      font-size: 1.8rem;
+    }
+    
+    @include mobile {
+      font-size: 1.5rem;
+      min-height: 2.5rem;
+    }
+  }
+
+  &__title-text {
+    margin-right: 0.1rem;
+  }
+
+  &__cursor {
+    animation: blink 1s infinite;
+    color: var(--color-primary);
+    font-weight: 100;
+  }
+
+  &__description {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    @include mobile {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__cta,
+  &__resume {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    @include transition(all $transition-fast);
+    @include shadow('sm');
+    
+    @include mobile {
+      width: 200px;
+      justify-content: center;
+    }
+  }
+
+  &__social {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+    
+    @include mobile {
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__social-link {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    position: relative;
+    @include transition(all $transition-fast);
+    @include shadow('sm');
+    
+    &:hover {
+      background: var(--color-primary);
+      color: white;
+      @include shadow('md');
+      
+      .hero__social-tooltip {
+        opacity: 1;
+        transform: translateY(-45px) translateX(-50%);
+      }
+    }
+    
+    @include mobile {
+      width: 45px;
+      height: 45px;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__social-tooltip {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateY(-35px) translateX(-50%);
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    opacity: 0;
+    pointer-events: none;
+    @include transition(all $transition-fast);
+    white-space: nowrap;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: var(--text-primary);
+    }
+  }
+
+  &__scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+    
+    @include mobile {
+      bottom: 1rem;
+    }
+  }
+
+  &__scroll-arrow {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.hero__cta:hover {
+  transform: translateY(-2px);
+  @include shadow('lg');
+}
+
+.hero__resume:hover {
+  transform: translateY(-2px);
+  @include shadow('lg');
+}
+
+@media (max-height: 700px) {
+  .hero {
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    
+    &__name {
+      font-size: 3rem;
+    }
+    
+    &__title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    &__description {
+      margin-bottom: 2rem;
+    }
+    
+    &__actions {
+      margin-bottom: 2rem;
+    }
+    
+    &__social {
+      margin-bottom: 2rem;
+    }
+  }
+}
