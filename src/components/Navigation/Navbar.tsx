@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX, HiHome, HiBriefcase, HiCode, HiDocument, HiMail } from 'react-icons/hi';
 import { FiSun, FiMoon } from 'react-icons/fi';
@@ -12,9 +12,9 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(false);
   const { isDark, toggleTheme } = useTheme();
+  const location = useLocation();
 
   useEffect(() => {
-    // Animação de entrada do navbar com delay
     const timer = setTimeout(() => {
       setShowNavbar(true);
     }, 500);
@@ -30,11 +30,15 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(false);
   };
 
+  const isActiveRoute = (path: string) => {
+    return location.pathname === path;
+  };
+
   return (
     <>
       {/* Navbar Superior */}
       <motion.nav 
-        className={`navbar ${isDark ? 'dark' : 'light'}`}
+        className={`navbar ${isDark ? 'dark' : 'light'} ${isMenuOpen ? 'navbar--expanded' : ''}`}
         initial={{ y: -100 }}
         animate={{ y: showNavbar ? 0 : -100 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -65,20 +69,20 @@ const Navbar: React.FC = () => {
               </motion.div>
             </motion.button>
 
-            {/* Menu Hambúrguer */}
+            {/* Menu Hambúrguer / X para fechar */}
             <motion.button 
               className={`navbar__menu-toggle ${isMenuOpen ? 'navbar__menu-toggle--active' : ''}`}
               onClick={toggleMenu}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              aria-label="Toggle menu"
+              aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
             >
               <motion.div
                 initial={false}
                 animate={{ rotate: isMenuOpen ? 90 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {isMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+                {isMenuOpen ? <HiX size={50} /> : <HiMenu size={24} />}
               </motion.div>
             </motion.button>
           </div>
@@ -99,121 +103,154 @@ const Navbar: React.FC = () => {
               onClick={closeMenu}
             />
 
-            {/* Menu Lateral */}
+            {/* Menu Lateral Estilo Onyedika 50/50 */}
             <motion.div
               className="onyedika-menu"
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
-              transition={{ type: 'tween', duration: 0.4, ease: 'easeOut' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             >
-              {/* Bloco GitHub */}
-              <motion.div 
-                className="onyedika-menu__block onyedika-menu__block--github"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1, duration: 0.3 }}
-              >
-                <a href={DEVELOPER_INFO.github} target="_blank" rel="noopener noreferrer" className="onyedika-menu__social-link">
-                  <FaGithub size={20} />
-                  <span>GitHub</span>
-                </a>
-              </motion.div>
+              {/* Seção de Redes Sociais - 50% esquerda */}
+              <div className="onyedika-menu__social-section">
+                <motion.a
+                  href={DEVELOPER_INFO.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-block social-block--github"
+                  initial={{ x: -100, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.1, duration: 0.3 }}
+                >
+                  <div className="social-block__content">
+                    <FaGithub size={48} />
+                    <span className="social-block__label">GitHub</span>
+                  </div>
+                </motion.a>
 
-              {/* Bloco LinkedIn */}
-              <motion.div 
-                className="onyedika-menu__block onyedika-menu__block--linkedin"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2, duration: 0.3 }}
-              >
-                <a href={DEVELOPER_INFO.linkedin} target="_blank" rel="noopener noreferrer" className="onyedika-menu__social-link">
-                  <FaLinkedin size={20} />
-                  <span>LinkedIn</span>
-                </a>
-              </motion.div>
+                <motion.a
+                  href={DEVELOPER_INFO.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-block social-block--linkedin"
+                  initial={{ x: -100, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.3 }}
+                >
+                  <div className="social-block__content">
+                    <FaLinkedin size={48} />
+                    <span className="social-block__label">LinkedIn</span>
+                  </div>
+                </motion.a>
 
-              {/* Bloco WhatsApp */}
-              <motion.div 
-                className="onyedika-menu__block onyedika-menu__block--whatsapp"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.3 }}
-              >
-                <a href={`https://wa.me/${DEVELOPER_INFO.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="onyedika-menu__social-link">
-                  <FaWhatsapp size={20} />
-                  <span>WhatsApp</span>
-                </a>
-              </motion.div>
+                <motion.a
+                  href={`https://wa.me/${DEVELOPER_INFO.phone.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-block social-block--whatsapp"
+                  initial={{ x: -100, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.3 }}
+                >
+                  <div className="social-block__content">
+                    <FaWhatsapp size={48} />
+                    <span className="social-block__label">WhatsApp</span>
+                  </div>
+                </motion.a>
 
-              {/* Bloco E-mail */}
-              <motion.div 
-                className="onyedika-menu__block onyedika-menu__block--email"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4, duration: 0.3 }}
-              >
-                <a href={`mailto:${DEVELOPER_INFO.email}`} className="onyedika-menu__social-link">
-                  <HiMail size={20} />
-                  <span>E-mail</span>
-                </a>
-              </motion.div>
-
-              {/* Bloco Menu Principal */}
-              <motion.div 
-                className="onyedika-menu__block onyedika-menu__block--nav"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 0.3 }}
-              >
-                <nav className="onyedika-menu__nav">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                <motion.a
+                  href={`mailto:${DEVELOPER_INFO.email}`}
+                  className="social-block social-block--email"
+                  initial={{ x: -100, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.4, duration: 0.3 }}
+                >
+                  <div className="social-block__content">
+                    <HiMail size={48} />
+                    <span className="social-block__label">E-mail</span>
+                  </div>
+                </motion.a>
+              </div>
+              
+              {/* Seção de Navegação - 50% direita */}
+              <div className="onyedika-menu__navigation-section">
+                <nav className="navigation-menu">
+                  <motion.li
+                    className="navigation-menu__item"
+                    initial={{ x: 100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
+                  >
+                    <Link 
+                      to="/" 
+                      onClick={closeMenu}
+                      className={isActiveRoute('/') ? 'active' : ''}
+                    >
+                      HOME
+                    </Link>
+                  </motion.li>
+                  
+                  <motion.li
+                    className="navigation-menu__item"
+                    initial={{ x: 100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.3 }}
+                  >
+                    <Link 
+                      to="/work" 
+                      onClick={closeMenu}
+                      className={isActiveRoute('/work') ? 'active' : ''}
+                    >
+                      TRABALHOS
+                    </Link>
+                  </motion.li>
+                  
+                  <motion.li
+                    className="navigation-menu__item"
+                    initial={{ x: 100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.3 }}
+                  >
+                    <Link 
+                      to="/skills" 
+                      onClick={closeMenu}
+                      className={isActiveRoute('/skills') ? 'active' : ''}
+                    >
+                      HABILIDADES
+                    </Link>
+                  </motion.li>
+                  
+                  <motion.li
+                    className="navigation-menu__item"
+                    initial={{ x: 100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.3 }}
+                  >
+                    <Link 
+                      to="/resume" 
+                      onClick={closeMenu}
+                      className={isActiveRoute('/resume') ? 'active' : ''}
+                    >
+                      CURRÍCULO
+                    </Link>
+                  </motion.li>
+                  
+                  <motion.li
+                    className="navigation-menu__item"
+                    initial={{ x: 100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.6, duration: 0.3 }}
                   >
-                    <Link to="/" onClick={closeMenu} className="onyedika-menu__nav-link">
-                      <HiHome size={20} /> HOME
+                    <Link 
+                      to="/contact" 
+                      onClick={closeMenu}
+                      className={isActiveRoute('/contact') ? 'active' : ''}
+                    >
+                      CONTATO
                     </Link>
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7, duration: 0.3 }}
-                  >
-                    <Link to="/work" onClick={closeMenu} className="onyedika-menu__nav-link">
-                      <HiBriefcase size={20} /> TRABALHOS
-                    </Link>
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8, duration: 0.3 }}
-                  >
-                    <Link to="/skills" onClick={closeMenu} className="onyedika-menu__nav-link">
-                      <HiCode size={20} /> HABILIDADES
-                    </Link>
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.9, duration: 0.3 }}
-                  >
-                    <Link to="/resume" onClick={closeMenu} className="onyedika-menu__nav-link">
-                      <HiDocument size={20} /> CURRÍCULO
-                    </Link>
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.0, duration: 0.3 }}
-                  >
-                    <Link to="/contact" onClick={closeMenu} className="onyedika-menu__nav-link">
-                      <HiMail size={20} /> CONTATO
-                    </Link>
-                  </motion.div>
+                  </motion.li>
                 </nav>
-              </motion.div>
+              </div>
             </motion.div>
           </>
         )}

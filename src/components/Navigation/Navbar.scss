@@ -1,21 +1,74 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
-// Navbar Superior Estilo Onyedika
+@keyframes slideDownNavbar {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 80px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--border-color);
-  z-index: 1000;
-  @include transition(all $transition-normal);
+  background: var(--color-primary); 
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 2500; 
+  animation: slideDownNavbar 0.6s ease-out;
+  @include transition(height $transition-normal);
+
+  &--expanded {
+    height: 120px; 
+    
+    .navbar__container {
+      height: 120px;
+      
+      .navbar__logo .navbar__name {
+        font-size: 2rem; 
+      }
+      
+      .navbar__logo .navbar__role {
+        font-size: 1rem; 
+      }
+      
+      .navbar__theme-toggle {
+        width: 60px;  
+        height: 60px;
+        
+        .navbar__theme-icon {
+          font-size: 1.5rem;
+        }
+      }
+      
+      .navbar__menu-toggle {
+        width: 80px; 
+        height: 80px;
+        font-size: 4rem; 
+        
+        svg {
+          width: 50px !important;
+          height: 50px !important;
+        }
+        
+        &:hover {
+          transform: scale(1.1);
+          background: none !important; 
+          border-radius: none !important;
+        }
+      }
+    }
+  }
 
   &.dark {
-    background: rgba(0, 0, 0, 0.8);
+    background: var(--color-primary);
   }
 
   &__container {
@@ -48,7 +101,7 @@
   &__name {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: white; 
     line-height: 1;
     margin: 0;
 
@@ -59,7 +112,7 @@
 
   &__role {
     font-size: 0.75rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.8); 
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -72,23 +125,23 @@
     gap: 1rem;
   }
 
-  &__theme-toggle,
-  &__menu-toggle {
-    background: transparent;
-    border: 1px solid var(--border-color);
+  &__theme-toggle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%; 
+    padding: 0;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
     cursor: pointer;
-    padding: 0.75rem;
-    border-radius: 12px;
-    @include transition(all $transition-fast);
-    color: var(--text-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
+    @include transition(all $transition-normal);
 
     &:hover {
-      background: var(--bg-secondary);
-      border-color: var(--color-primary);
-      color: var(--color-primary);
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
       @include shadow('sm');
     }
 
@@ -97,7 +150,8 @@
     }
 
     @include mobile {
-      padding: 0.6rem;
+      width: 44px;
+      height: 44px;
     }
   }
 
@@ -110,147 +164,273 @@
   }
 
   &__menu-toggle {
-    &--active {
-      background: var(--color-primary);
-      border-color: var(--color-primary);
-      color: white;
+    width: 48px;
+    height: 48px;
+    border: none; 
+    background: transparent;
+    color: white;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem; 
+    @include transition(all $transition-normal);
+
+    &:hover {
+      transform: scale(1.1); 
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    @include mobile {
+      width: 44px;
+      height: 44px;
+      font-size: 1.3rem;
     }
   }
 }
 
-// Menu Lateral Estilo Onyedika com Blocos Coloridos
 .onyedika-menu {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 400px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   z-index: 2000;
+  padding-top: 120px; 
+  @include transition(padding-top $transition-normal);
 
-  @include tablet {
-    width: 320px;
+  &.navbar-collapsed {
+    padding-top: 80px; 
   }
 
   @include mobile {
-    width: 100%;
+    flex-direction: column;
   }
 
-  &__block {
-    flex: 1;
+  &__social-section {
+    width: 50%;
     display: flex;
-    align-items: center;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    @include transition(all $transition-fast);
+    flex-direction: row; 
+    height: 100%;
 
-    &:hover {
-      transform: scale(1.02);
-    }
-
-    // Bloco GitHub - Cinza escuro
-    &--github {
-      background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
-    }
-
-    // Bloco LinkedIn - Azul
-    &--linkedin {
-      background: linear-gradient(135deg, #0077b5 0%, #0099d4 100%);
-    }
-
-    // Bloco WhatsApp - Verde
-    &--whatsapp {
-      background: linear-gradient(135deg, #25d366 0%, #20c659 100%);
-    }
-
-    // Bloco E-mail - Roxo
-    &--email {
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    }
-
-    // Bloco Menu Principal - Rosa (cor primária)
-    &--nav {
-      flex: 3;
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-      align-items: flex-start;
-      padding: 3rem 2rem;
-
-      .onyedika-menu__nav {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        width: 100%;
+    @include mobile {
+      width: 100%;
+      height: 40%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      flex-direction: column;
+      
+      .social-block__content {
+        flex-direction: column !important; 
+        gap: 1rem !important; 
+        
+        svg {
+          order: 1 !important; 
+          align-self: center !important; 
+        }
       }
     }
 
-    // Efeito de brilho
-    &::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transform: translateX(-100%);
-      @include transition(transform 0.6s);
-    }
+    .social-block {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-decoration: none;
+      color: white;
+      @include transition(all $transition-normal);
+      position: relative;
+      overflow: hidden;
+      writing-mode: vertical-lr; 
+      height: 100%;
 
-    &:hover::before {
-      transform: translateX(100%);
+      &:hover {
+        transform: scale(1.02);
+      }
+
+      &--github {
+        background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
+      }
+
+      &--linkedin {
+        background: linear-gradient(135deg, #0077b5 0%, #0099d4 100%);
+      }
+
+      &--whatsapp {
+        background: linear-gradient(135deg, #25d366 0%, #20c659 100%);
+      }
+
+      &--email {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      }
+
+      // Efeito de brilho
+      &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transform: translateX(-100%);
+        @include transition(transform 0.6s);
+      }
+
+      &:hover::before {
+        transform: translateX(100%);
+      }
+
+      &__content {
+        display: flex;
+        flex-direction: row; // Linha para ícone ficar ao lado do texto
+        align-items: center; // Centralizar verticalmente
+        gap: 2rem; // Espaço entre ícone e texto
+        text-align: center;
+        height: 100%;
+        justify-content: center;
+        
+        // Ícone das redes sociais vem ANTES do texto (à esquerda = acima visualmente)
+        svg {
+          order: 1; // Ícone primeiro (à esquerda)
+          flex-shrink: 0; // Não encolher o ícone
+          align-self: flex-start; // Ícones alinhados no topo
+        }
+      }
+
+      &__label {
+        font-size: 3rem; // Mesmo tamanho do texto do menu
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        writing-mode: vertical-lr; // Texto na vertical
+        text-orientation: mixed;
+        transform: rotate(180deg); // Texto deitado
+        white-space: nowrap;
+        order: 2; // Texto depois do ícone
+        margin: 0; // Remover margens extras
+        align-self: flex-end; // Texto ajustado abaixo dos ícones
+
+        @include mobile {
+          font-size: 2rem; // Mesmo tamanho do menu mobile
+          writing-mode: horizontal-tb; // Normal no mobile
+          transform: none;
+          letter-spacing: 1px;
+          order: 2; // Manter ordem consistente
+        }
+      }
     }
   }
 
-  &__social-link {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
+  // Lado direito - Menu de navegação (50% da tela)
+  &__navigation-section {
+    width: 50%;
+    background: var(--bg-primary); // Background do tema
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-    @include transition(all $transition-fast);
-
-    &:hover {
-      transform: translateX(10px);
-    }
-
-    span {
-      font-weight: 600;
-    }
-  }
-
-  &__nav-link {
-    color: white;
-    text-decoration: none;
-    font-size: 1.25rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    @include transition(all $transition-normal);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateX(15px);
-      @include shadow('md');
-    }
-
-    &:active {
-      transform: translateX(15px) scale(0.95);
-    }
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; // Alinhado à direita
+    padding: 4rem;
+    position: relative;
+    border-left: 3px solid var(--color-primary); // Borda rosa sutil
 
     @include mobile {
-      font-size: 1.1rem;
-      padding: 0.6rem 0.8rem;
+      width: 100%;
+      height: 60%;
+      padding: 2rem;
+      align-items: center; // Centralizado no mobile
     }
+  }
+}
+
+// Menu de navegação principal
+.navigation-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+
+  &__item {
+    margin-bottom: 1.5rem;
+    text-align: right; // Alinhado à direita
+    position: relative;
+
+    @include mobile {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    a {
+      color: var(--color-primary); // Texto rosa pink
+      text-decoration: none;
+      font-size: 3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      @include transition(all $transition-normal);
+      display: inline-block;
+      padding: 0.5rem 0;
+      position: relative;
+
+      &:hover {
+        transform: translateX(-20px); // Move para esquerda (direção do dedo)
+        opacity: 0.8;
+      }
+
+      &:active {
+        transform: translateX(-20px) scale(0.95);
+      }
+
+      // Página ativa - dedo indicador ANTES do texto
+      &.active {
+        &::before {
+          content: '👉';
+          position: absolute;
+          left: -5rem; // Mais afastado do texto
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 2rem;
+          animation: pointFinger 1.5s ease-in-out infinite;
+        }
+        
+        color: var(--color-primary-dark); // Rosa mais escuro para ativo
+        font-weight: 800;
+      }
+
+      @include mobile {
+        font-size: 2rem;
+        text-align: center;
+
+        &:hover {
+          transform: translateX(-10px);
+        }
+        
+        &.active::before {
+          left: -3.5rem; // Mais afastado no mobile também
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+// Animação do dedo indicador (movendo para direita, em direção ao texto)
+@keyframes pointFinger {
+  0%, 100% {
+    transform: translateY(-50%) translateX(0);
+  }
+  50% {
+    transform: translateY(-50%) translateX(15px); // Move para direita
   }
 }
 
