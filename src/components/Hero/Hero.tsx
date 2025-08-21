@@ -126,7 +126,7 @@ const Hero: React.FC = () => {
             className="hero__greeting"
             variants={itemVariants}
           >
-            Olá, eu sou
+            Olá, eu sou a
           </motion.div>
 
           {/* Nome */}

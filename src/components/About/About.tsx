@@ -2,12 +2,12 @@ import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaCode, FaLaptopCode, FaServer, FaMobile } from 'react-icons/fa';
-import { DEVELOPER_INFO } from '../../utils/constants';
+import daniImage from '../../assets/dani.jpg';
 import './About.scss';
 
 const About: React.FC = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true });
 
   const specialties = [
     {
@@ -88,7 +88,7 @@ const About: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="about__intro">
-              <h3>Olá! Eu sou a Dani 👋</h3>
+              <h3>Olá! Eu sou a Daniele 👋</h3>
               <p>
                 Sou uma desenvolvedora apaixonada por criar soluções digitais elegantes e funcionais. 
                 Minha jornada na programação começou com a curiosidade de entender como as coisas funcionam 
@@ -109,11 +109,12 @@ const About: React.FC = () => {
             animate={isInView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            <div className="about__image-placeholder">
-              <div className="placeholder-content">
-                <FaCode className="placeholder-icon" />
-                <p>Espaço reservado para foto profissional</p>
-              </div>
+            <div className="about__image-container">
+              <img 
+                src={daniImage} 
+                alt="Dani Tavares Lobo" 
+                className="about__image"
+              />
             </div>
           </motion.div>
         </div>

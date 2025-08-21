@@ -86,7 +86,7 @@ const Navbar: React.FC = () => {
                 animate={{ rotate: isMenuOpen ? 90 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {isMenuOpen ? <HiX size={36} /> : <HiMenu size={36} />}
+                {isMenuOpen ? <HiX size={32} /> : <HiMenu size={32} />}
               </motion.div>
             </motion.button>
           </div>
@@ -209,7 +209,7 @@ const Navbar: React.FC = () => {
                     </Link>
                   </motion.li>
                   
-                  <motion.li
+                  {/* <motion.li
                     className="navigation-menu__item"
                     initial={{ x: 100, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -222,7 +222,7 @@ const Navbar: React.FC = () => {
                     >
                       TRABALHOS
                     </Link>
-                  </motion.li>
+                  </motion.li> */}
                   
                   
                   <motion.li
