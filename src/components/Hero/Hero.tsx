@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaWhatsapp, FaDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
 import { DEVELOPER_INFO } from '../../utils/constants';
 import daniImage from '../../assets/dani.png';
@@ -156,30 +156,6 @@ const Hero: React.FC = () => {
             Microsoft e experiências de usuário excepcionais.
           </motion.p>
 
-          {/* Botões de ação */}
-          <motion.div 
-            className="hero__actions"
-            variants={itemVariants}
-          >
-            <motion.a
-              href="#contact"
-              className="btn btn--primary hero__cta"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Entre em Contato
-            </motion.a>
-            
-            <motion.a
-              href="/curriculo"
-              className="btn btn--outline hero__resume"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaDownload />
-              Baixar CV
-            </motion.a>
-          </motion.div>
 
           {/* Links sociais */}
           <motion.div 
@@ -248,26 +224,6 @@ const Hero: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Indicador de scroll */}
-      <motion.div 
-        className="hero__scroll-indicator"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-      >
-        <motion.div 
-          className="hero__scroll-arrow"
-          animate={{ y: [0, 10, 0] }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          ↓
-        </motion.div>
-        <span>Role para explorar</span>
-      </motion.div>
       </div>
     </section>
   );
