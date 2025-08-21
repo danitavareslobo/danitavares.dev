@@ -1,11 +1,10 @@
 @import '../../styles/variables.scss';
-@import '../../styles/mixins.scss';
 
 .layout {
   min-height: 100vh;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  @include transition(background-color $transition-normal, color $transition-normal);
+  
   
   &__container {
     position: relative;

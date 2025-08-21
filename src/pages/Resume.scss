@@ -1,5 +1,4 @@
 @import '../styles/variables.scss';
-@import '../styles/mixins.scss';
 
 .resume {
   min-height: 100vh;
@@ -16,7 +15,7 @@
     justify-content: center;
     margin: 3rem 0;
 
-    @include mobile {
+    @media (max-width: 480px) {
       flex-direction: column;
       align-items: center;
       gap: 1rem;
@@ -51,7 +50,7 @@
       opacity: 0.8;
     }
 
-    @include mobile {
+    @media (max-width: 480px) {
       height: 300px;
       
       p {

@@ -1,5 +1,4 @@
 @import '../styles/variables.scss';
-@import '../styles/mixins.scss';
 
 .about {
   min-height: 100vh;
@@ -16,12 +15,12 @@
     align-items: center;
     margin-top: 3rem;
 
-    @include tablet {
+    @media (min-width: 481px) and (max-width: 768px) {
       grid-template-columns: 1fr;
       gap: 3rem;
     }
 
-    @include mobile {
+    @media (max-width: 480px) {
       gap: 2rem;
     }
   }
@@ -33,7 +32,7 @@
       color: var(--text-secondary);
       margin-bottom: 1.5rem;
 
-      @include mobile {
+      @media (max-width: 480px) {
         font-size: 1rem;
         margin-bottom: 1rem;
       }
@@ -56,12 +55,12 @@
       color: var(--text-tertiary);
       font-weight: 500;
 
-      @include tablet {
+      @media (min-width: 481px) and (max-width: 768px) {
         width: 250px;
         height: 250px;
       }
 
-      @include mobile {
+      @media (max-width: 480px) {
         width: 200px;
         height: 200px;
         font-size: 0.9rem;

@@ -1,6 +1,6 @@
 .theme-transition {
   * {
-    @include transition(background-color $transition-normal, color $transition-normal, border-color $transition-normal);
+    
   }
 }
 
@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
-  @include transition(all $transition-fast);
+  
   
   &:hover {
     background-color: var(--color-primary);

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import './variables.scss';
-@import './mixins.scss';
 
 * {
   margin: 0;
@@ -18,7 +17,7 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
-  @include transition(background-color $transition-normal, color $transition-normal);
+  
 }
 
 #root {
@@ -59,9 +58,8 @@ body {
   }
 }
 
-// Layout principal - Estilo Onyedika
 .main-content {
-  padding-top: 80px; // Espaço para navbar fixo
+  padding-top: 80px; 
   min-height: 100vh;
 }
 
@@ -70,12 +68,11 @@ body {
   margin: 0 auto;
   padding: 0 20px;
   
-  @include mobile {
+  @media (max-width: 480px) {
     padding: 0 16px;
   }
 }
 
-// Estilos globais para páginas
 .page {
   min-height: 100vh;
   
@@ -86,11 +83,11 @@ body {
     margin-bottom: 1rem;
     text-align: center;
     
-    @include tablet {
+    @media (min-width: 481px) and (max-width: 768px) {
       font-size: 2.2rem;
     }
     
-    @include mobile {
+    @media (max-width: 480px) {
       font-size: 2rem;
     }
   }
@@ -103,13 +100,12 @@ body {
     margin: 0 auto 2rem;
     line-height: 1.7;
     
-    @include mobile {
+    @media (max-width: 480px) {
       font-size: 1rem;
     }
   }
 }
 
-// Estilo para botões
 .btn {
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -118,7 +114,7 @@ body {
   font-weight: 500;
   cursor: pointer;
   border: 2px solid transparent;
-  @include transition(all $transition-fast);
+  
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -133,7 +129,7 @@ body {
     &:hover {
       background: var(--color-primary-dark);
       border-color: var(--color-primary-dark);
-      @include shadow('md');
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
   }
 
@@ -145,11 +141,11 @@ body {
     &:hover {
       background: var(--color-primary);
       color: white;
-      @include shadow('md');
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
   }
 
-  @include mobile {
+  @media (max-width: 480px) {
     width: 100%;
     max-width: 200px;
   }

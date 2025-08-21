@@ -6,6 +6,7 @@ import { FiSun, FiMoon } from 'react-icons/fi';
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { DEVELOPER_INFO } from '../../utils/constants';
 import { useTheme } from '../../hooks/useTheme';
+import logoIcon from '../../assets/tag2.png';
 import './Navbar.scss';
 
 const Navbar: React.FC = () => {
@@ -46,8 +47,11 @@ const Navbar: React.FC = () => {
         <div className="navbar__container">
           <div className="navbar__logo">
             <Link to="/" className="navbar__logo-link">
-              <span className="navbar__name">Dani Tavares Lobo</span>
-              <span className="navbar__role">Full-Stack Development</span>
+              <img 
+                src={logoIcon} 
+                alt="Dani Tavares Lobo" 
+                className="navbar__logo-icon"
+              />
             </Link>
           </div>
 
@@ -82,7 +86,7 @@ const Navbar: React.FC = () => {
                 animate={{ rotate: isMenuOpen ? 90 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {isMenuOpen ? <HiX size={50} /> : <HiMenu size={24} />}
+                {isMenuOpen ? <HiX size={36} /> : <HiMenu size={36} />}
               </motion.div>
             </motion.button>
           </div>

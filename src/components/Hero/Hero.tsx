@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaWhatsapp, FaDownload } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
 import { DEVELOPER_INFO } from '../../utils/constants';
+import daniImage from '../../assets/dani.png';
 import './Hero.scss';
 
 const Hero: React.FC = () => {
@@ -112,12 +113,14 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="hero__container">
-        <motion.div 
-          className="hero__content"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
+        <div className="hero__grid">
+          {/* Coluna Esquerda - Conteúdo de Texto */}
+          <motion.div 
+            className="hero__content"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
           {/* Saudação */}
           <motion.div 
             className="hero__greeting"
@@ -207,26 +210,64 @@ const Hero: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        {/* Indicador de scroll */}
+        {/* Coluna Direita - Imagem */}
         <motion.div 
-          className="hero__scroll-indicator"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
+          className="hero__image-section"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
         >
           <motion.div 
-            className="hero__scroll-arrow"
-            animate={{ y: [0, 10, 0] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+            className="hero__image-container"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
           >
-            ↓
+            <motion.img 
+              src={daniImage} 
+              alt="Dani Tavares Lobo"
+              className="hero__image"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.7 }}
+            />
+            
+            {/* Efeitos decorativos na imagem */}
+            <motion.div 
+              className="hero__image-glow"
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
           </motion.div>
-          <span>Role para explorar</span>
         </motion.div>
+      </div>
+
+      {/* Indicador de scroll */}
+      <motion.div 
+        className="hero__scroll-indicator"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+      >
+        <motion.div 
+          className="hero__scroll-arrow"
+          animate={{ y: [0, 10, 0] }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          ↓
+        </motion.div>
+        <span>Role para explorar</span>
+      </motion.div>
       </div>
     </section>
   );
